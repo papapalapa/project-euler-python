@@ -5,9 +5,15 @@ What is the largest prime factor of the number 600851475143 ?
 """
 class Problem3:
     def __init__(self, dividend):
-        self.primeList = self.primeNumbersList(10000)
+        self.limit = 10
+        self.primeList = self.primeNumbersList(self.limit)
         self.primeFactors = []
         self.dividend = dividend
+
+    # Get next set of prime numbers
+    def nextPrimeSet(self):
+        self.limit *= 2
+        self.primeList = self.primeNumbersList(self.limit)
 
     # Sieve of Eratosthenes
     def primeNumbersList(self, target):
@@ -27,8 +33,11 @@ class Problem3:
                 self.primeFactors.append(primeNumber)
                 self.dividend /= primeNumber
                 self.largestPrimeFactor()
-        
-        return self.primeFactors, self.dividend, max(self.primeFactors)
+        if self.dividend != 1.0:
+            self.nextPrimeSet()
+            self.largestPrimeFactor()
+
+        return max(self.primeFactors)
 
 
-print(Problem3(600851475143).largestPrimeFactor())
+print(Problem3(1000000000000000000000).largestPrimeFactor())
