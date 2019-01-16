@@ -12,25 +12,18 @@ class Problem4:
                 numbers[0] = numbers[0] - 1
             else:
                 numbers[1] = numbers[1] - 1
-            print(self.palindromeTest(numbers[0] * numbers[1]))
+            
+            if self.palindromeTest(numbers[0] * numbers[1]):
+                return numbers[0], numbers[1]
 
     def palindromeTest(self, number):
         number = str(number)
         digitNumber = len(number)
-        #results = []
+
         for i in range(int(digitNumber / 2)):
             result = number[i] == number[digitNumber - i - 1]
             if (result == True):
-                # results.append(result)
                 continue
             else:
                 return False
-        
-        # if (results == []):
-        #     print(number)
-        # print(results)
         return True
-
-            
-
-Problem4().factorHandler()
